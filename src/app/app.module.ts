@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
-import { TodolistsPageComponent } from './todolists-page/todolists-page.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { TodolistsPageComponent } from './pages/todolists-page/todolists-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TodolistsPageComponent } from './todolists-page/todolists-page.componen
     NavbarComponent,
     HomePageComponent,
     NotFoundPageComponent,
-    TodolistsPageComponent
+    TodolistsPageComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

@@ -15,9 +15,11 @@
             </li>
         </ul>
 
-        <div ngbDropdown class="navbar-right">
-            <button class="btn profile-dropdown-toggle" id="dropdownBasic1" ngbDropdownToggle>{{user?.username}}</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <div ngbDropdown class="navbar-right" display="dynamic">
+            <button class="btn profile-dropdown-toggle" id="userProfileDropdown" ngbDropdownToggle>
+                {{user?.username}}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="userProfileDropdown">
                 <button ngbDropdownItem>Action - 1</button>
                 <button ngbDropdownItem>Another Action</button>
                 <button ngbDropdownItem>Something else is here</button>
