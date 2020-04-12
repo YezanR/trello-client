@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "trello-client"
+    }
+  },
+  "defaultProject": "trello-client",
+  "cli": {
+    "analytics": "4b54ce5a-f212-4b5e-ab13-1a9dc69411a1"
+  }
 }
