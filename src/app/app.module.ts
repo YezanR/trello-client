@@ -9,6 +9,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { TodolistsPageComponent } from './pages/todolists-page/todolists-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
     HomePageComponent,
     NotFoundPageComponent,
     TodolistsPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,
