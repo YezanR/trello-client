@@ -1,5 +1,5 @@
 
-export class SignInRequest {
+export class Credentials {
     public username: String;
     public password: String;
 }

@@ -17,7 +17,7 @@
         <form class="form" (ngSubmit)="signIn()" #signInForm="ngForm">
           <div class="form-group required">
             <label for="emailOrUsernameInput">Email or username</label>
-            <input type="text" required [(ngModel)]="signInRequest.username" 
+            <input type="text" required [(ngModel)]="credentials.username" 
               name="username"
               class="form-control" id="emailOrUsernameInput" aria-describedby="usernameHelp">
             <small id="usernameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -25,7 +25,7 @@
         
           <div class="form-group required">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" required [(ngModel)]="signInRequest.password" 
+            <input type="password" required [(ngModel)]="credentials.password" 
               name="password"
               class="form-control" id="exampleInputPassword1">
           </div>
@@ -36,8 +36,6 @@
           </div>
           
           <button type="submit" class="btn btn-primary" [disabled]="!signInForm.form.valid">Submit</button>
-
-          <p class="text-danger mt-2">{{ errorMessage }}</p>
         </form>
       </div>
     </div>

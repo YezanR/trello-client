@@ -8,10 +8,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { TodolistsPageComponent } from './pages/todolists-page/todolists-page.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AuthModule } from './modules/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,6 @@ import { FormsModule } from '@angular/forms';
     HomePageComponent,
     NotFoundPageComponent,
     TodolistsPageComponent,
-    LoginPageComponent,
     MainLayoutComponent
   ],
   imports: [
@@ -29,7 +28,8 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     HttpClientModule,
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AuthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
