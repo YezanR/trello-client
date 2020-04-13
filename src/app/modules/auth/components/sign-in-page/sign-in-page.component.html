@@ -36,6 +36,8 @@
           </div>
           
           <button type="submit" class="btn btn-primary" [disabled]="!signInForm.form.valid">Submit</button>
+
+          <p class="text-danger mt-2">{{ errorMessage }}</p>
         </form>
       </div>
     </div>

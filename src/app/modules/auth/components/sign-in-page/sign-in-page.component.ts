@@ -10,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SignInPageComponent implements OnInit {
   credentials: Credentials = new Credentials();
-  errors: any[];
+  errorMessage: String;
   loading: boolean;
   message: string;
 
@@ -27,12 +27,18 @@ export class SignInPageComponent implements OnInit {
     this.authenticationService
       .signIn(this.credentials)
       .then(() => {
-        this.errors = null;
+        this.errorMessage = null;
         this.router.navigateByUrl('/home');
       })
       .catch((reason) => {
-        this.errors = [];
-        this.errors.push({message: reason.error.message});
+        let message = '';
+        if (reason.status == 0) {
+          message = 'The server is unreachable';
+        }
+        else {
+          message = reason.error.message;
+        }
+        this.errorMessage = message;
     });
   }
 }
