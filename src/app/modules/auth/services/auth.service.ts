@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Credentials } from '../dto/credentials';
+import { User } from 'src/app/entities/user';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class AuthService {
 
   logout() {
     this.destroySession();
-    this.router.navigateByUrl('/signIn');
+    this.router.navigateByUrl('/auth/signIn');
   }
 
   getToken() : string {
@@ -39,5 +40,10 @@ export class AuthService {
 
   destroySession() {
     localStorage.removeItem('token');
+  }
+
+  getUser(): Promise<User> {
+    return this.http.get<User>(this.baseUrl + 'signedInUser')
+      .toPromise();
   }
 }

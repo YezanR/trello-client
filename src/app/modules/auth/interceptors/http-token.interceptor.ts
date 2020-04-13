@@ -22,7 +22,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
     };
     const token = this.authService.getToken();
     if (token) {
-      headersConfig['Authorization'] = `${token}`;
+      headersConfig['Authorization'] = `Bearer ${token}`;
     }
     const request = req.clone({ setHeaders: headersConfig });
     return next.handle(request); 
