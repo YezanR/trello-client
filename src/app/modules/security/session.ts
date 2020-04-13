@@ -1,7 +1,9 @@
 import { User } from "../../entities/user";
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class Session {
     private user: User;
     private token: String;

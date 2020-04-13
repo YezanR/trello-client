@@ -6,6 +6,7 @@ import { TodolistsPageComponent } from './pages/todolists-page/todolists-page.co
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SecurityModule } from './modules/security/security.module';
 import { AuthGuard } from './modules/security/auth-guard';
+import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 
 const routes: Routes = [
   { 
@@ -14,6 +15,7 @@ const routes: Routes = [
   },
   { 
     path: '',
+    component: MainLayoutComponent,
     children: [
       { 
         path: 'home', 
