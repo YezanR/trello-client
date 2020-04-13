@@ -10,6 +10,8 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { TodolistsPageComponent } from './pages/todolists-page/todolists-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,10 @@ import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

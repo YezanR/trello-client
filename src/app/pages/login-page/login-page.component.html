@@ -14,16 +14,20 @@
       <div class="m-auto align-self-center">
         <h1>Sign In</h1>
     
-        <form class="form">
-          <div class="form-group">
+        <form class="form" (ngSubmit)="signIn()" #signInForm="ngForm">
+          <div class="form-group required">
             <label for="emailOrUsernameInput">Email or username</label>
-            <input type="text" class="form-control" id="emailOrUsernameInput" aria-describedby="usernameHelp">
+            <input type="text" required [(ngModel)]="signInRequest.username" 
+              name="username"
+              class="form-control" id="emailOrUsernameInput" aria-describedby="usernameHelp">
             <small id="usernameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
         
-          <div class="form-group">
+          <div class="form-group required">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" required [(ngModel)]="signInRequest.password" 
+              name="password"
+              class="form-control" id="exampleInputPassword1">
           </div>
         
           <div class="form-group form-check">
@@ -31,7 +35,9 @@
             <label class="form-check-label" for="rememberMeCheckbox">Remember me</label>
           </div>
           
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!signInForm.form.valid">Submit</button>
+
+          <p class="text-danger mt-2">{{ errorMessage }}</p>
         </form>
       </div>
     </div>

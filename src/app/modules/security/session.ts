@@ -6,8 +6,7 @@ export class Session {
     private user: User;
     private token: String;
 
-    public create(user: User, token: String) {
-        this.user = user;
+    public create(token: String) {
         this.token = token;
     }
 
