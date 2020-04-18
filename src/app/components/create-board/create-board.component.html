@@ -1,0 +1,23 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">New board</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form>
+        <div class="form-group required">
+          <label for="boardTitleInput">Title</label>
+          <input type="text" required class="form-control" 
+            name="boardTitleInput" id="boardTitleInput"
+            placeholder="The board title here...">
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>

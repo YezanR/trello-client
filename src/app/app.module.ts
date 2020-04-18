@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { AuthModule } from './modules/auth/auth.module';
 import { BoardsPageComponent } from './pages/boards-page/boards-page.component';
 import { NotifierComponent } from './modules/core/notifier/notifier.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CreateBoardComponent } from './components/create-board/create-board.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { NotifierComponent } from './modules/core/notifier/notifier.component';
     NotFoundPageComponent,
     BoardsPageComponent,
     MainLayoutComponent,
-    NotifierComponent
+    NotifierComponent,
+    CreateBoardComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { NotifierComponent } from './modules/core/notifier/notifier.component';
     HttpClientModule,
     BrowserModule,
     FormsModule,
-    AuthModule.forRoot()
+    AuthModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Credentials } from '../dto/credentials';
-import { User } from 'src/app/entities/user';
+import { User } from '@app/entities/user';
 
 @Injectable({
   providedIn: 'root'
