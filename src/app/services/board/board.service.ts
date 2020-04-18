@@ -14,6 +14,6 @@ export class BoardService extends Service {
   }
 
   public findAllPersonal(): Observable<Board[]> {
-    return this.http.get<Board[]>(this.BASE_API_URL + "boards");
+    return this.http.get<Board[]>(this.BASE_API_URL + "boards/personal");
   }
 }

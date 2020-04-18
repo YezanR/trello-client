@@ -14,7 +14,7 @@ export class BoardsPageComponent implements OnInit {
   constructor(private boardService: BoardService) { }
 
   ngOnInit(): void {
-    
+    this.list();
   }
 
   list() {

@@ -1,1 +1,13 @@
-<p>todolists-page works!</p>
+
+
+<div class="row mt-4">
+    <div class="col-3" *ngFor="let board of boards">
+        <div class="card raised-1">
+            <div class="card-body overflow-fade">
+                <h5 class="card-title">
+                    {{ board.title }}
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
