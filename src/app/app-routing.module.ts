@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
-import { TodolistsPageComponent } from './pages/todolists-page/todolists-page.component';
 import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { OnlyNoAuthGuard } from './modules/auth/guards/only-no-auth.guard';
 import { AuthGuard } from './modules/auth/guards/auth.guard';
+import { BoardsPageComponent } from './pages/boards-page/boards-page.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -19,8 +19,8 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path: 'todolists', 
-        component: TodolistsPageComponent, 
+        path: 'boards', 
+        component: BoardsPageComponent, 
         canActivate: [AuthGuard]
       },
     ]

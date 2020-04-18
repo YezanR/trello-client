@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TodolistsPageComponent } from './todolists-page.component';
+import { TodolistsPageComponent } from './boards-page.component';
 
 describe('TodolistsPageComponent', () => {
   let component: TodolistsPageComponent;

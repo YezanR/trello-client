@@ -7,11 +7,11 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
-import { TodolistsPageComponent } from './pages/todolists-page/todolists-page.component';
 import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthModule } from './modules/auth/auth.module';
+import { BoardsPageComponent } from './pages/boards-page/boards-page.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { AuthModule } from './modules/auth/auth.module';
     NavbarComponent,
     HomePageComponent,
     NotFoundPageComponent,
-    TodolistsPageComponent,
+    BoardsPageComponent,
     MainLayoutComponent
   ],
   imports: [

@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
 
   navItems: Array<any> = [
     {link: '/home', text: 'Home'},
-    {link: '/todolists', text: 'Todolists'},
+    {link: '/boards', text: 'Boards'},
     {link: '/friends', text: 'Friends'},
   ]
 
