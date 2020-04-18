@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthModule } from './modules/auth/auth.module';
 import { BoardsPageComponent } from './pages/boards-page/boards-page.component';
+import { NotifierComponent } from './modules/core/notifier/notifier.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BoardsPageComponent } from './pages/boards-page/boards-page.component';
     HomePageComponent,
     NotFoundPageComponent,
     BoardsPageComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    NotifierComponent
   ],
   imports: [
     BrowserModule,
