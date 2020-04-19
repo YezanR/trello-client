@@ -31,6 +31,11 @@ export class BoardsPageComponent implements OnInit {
   }
 
   showCreateModal() {
-    this.newBoardModal.open();
+    this.newBoardModal.open()
+      .then(result => {
+        this.boards.push(result);
+      }, reason => {
+
+      });
   }
 }

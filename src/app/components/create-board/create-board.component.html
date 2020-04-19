@@ -6,18 +6,30 @@
       </button>
     </div>
 
-    <div class="modal-body">
-      <form>
-        <div class="form-group required">
-          <label for="boardTitleInput">Title</label>
-          <input type="text" required class="form-control" 
-            name="boardTitleInput" id="boardTitleInput"
-            placeholder="The board title here...">
-        </div>
-      </form>
-    </div>
+    <form #createBoardForm="ngForm" (submit)="create()">
+        <div class="modal-body">
+            <div class="form-group required">
+              <label for="boardTitleInput">Title</label>
+              <input type="text" required class="form-control" 
+                name="boardTitleInput" id="boardTitleInput"
+                [(ngModel)]="board.title"
+                placeholder="The board title here...">
+            </div>
 
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">Save</button>
-    </div>
+            <div class="form-group">
+              <label for="boardDescriptionInput">Description</label>
+              <textarea type="text" rows="5" required class="form-control" 
+                name="boardDescriptionInput" id="boardDescriptionInput"
+                [(ngModel)]="board.description"
+                placeholder="Write a description here..."></textarea> 
+            </div>
+        </div>
+    
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-success"
+            [disabled]="!createBoardForm.form.valid">
+            Save
+          </button>
+        </div>
+    </form>
 </ng-template>
