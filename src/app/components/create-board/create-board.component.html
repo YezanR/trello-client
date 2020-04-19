@@ -18,7 +18,7 @@
 
             <div class="form-group">
               <label for="boardDescriptionInput">Description</label>
-              <textarea type="text" rows="5" required class="form-control" 
+              <textarea type="text" rows="5" class="form-control" 
                 name="boardDescriptionInput" id="boardDescriptionInput"
                 [(ngModel)]="board.description"
                 placeholder="Write a description here..."></textarea> 
@@ -26,8 +26,8 @@
         </div>
     
         <div class="modal-footer">
-          <button type="submit" class="btn btn-outline-success"
-            [disabled]="!createBoardForm.form.valid">
+          <button type="submit" class="btn btn-success"
+            [disabled]="createBoardForm.form.invalid">
             Save
           </button>
         </div>
