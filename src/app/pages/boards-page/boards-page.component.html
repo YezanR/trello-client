@@ -10,7 +10,7 @@
     <div class="col-10">
         <div class="row">
             <div class="col-3" *ngFor="let board of boards">
-                <div class="card raised-1">
+                <div class="card raised-1" (click)="goToBoard(board)">
                     <div class="card-body overflow-fade">
                         <h5 class="card-title">
                             {{ board.title }}

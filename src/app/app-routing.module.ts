@@ -6,6 +6,7 @@ import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { OnlyNoAuthGuard } from './modules/auth/guards/only-no-auth.guard';
 import { AuthGuard } from './modules/auth/guards/auth.guard';
 import { BoardsPageComponent } from './pages/boards-page/boards-page.component';
+import { BoardPageComponent } from './pages/board-page/board-page.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -23,6 +24,11 @@ const routes: Routes = [
         component: BoardsPageComponent, 
         canActivate: [AuthGuard]
       },
+      {
+        path: 'boards/:id',
+        component: BoardPageComponent,
+        canActivate: [AuthGuard]
+      }
     ]
   },
   {

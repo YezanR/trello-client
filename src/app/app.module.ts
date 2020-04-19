@@ -15,6 +15,7 @@ import { BoardsPageComponent } from './pages/boards-page/boards-page.component';
 import { NotifierComponent } from './modules/core/notifier/notifier.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CreateBoardComponent } from './components/create-board/create-board.component';
+import { BoardPageComponent } from './pages/board-page/board-page.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CreateBoardComponent } from './components/create-board/create-board.com
     BoardsPageComponent,
     MainLayoutComponent,
     NotifierComponent,
-    CreateBoardComponent
+    CreateBoardComponent,
+    BoardPageComponent
   ],
   imports: [
     BrowserModule,

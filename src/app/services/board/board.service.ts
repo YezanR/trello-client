@@ -20,4 +20,8 @@ export class BoardService extends Service {
   public create(board: Board): Observable<Board> {
     return this.http.post<Board>(this.BASE_API_URL + "boards", board);
   }
+
+  public findById(id): Observable<Board> {
+    return this.http.get<Board>(`${this.BASE_API_URL}boards/${id}`);
+  }
 }

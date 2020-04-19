@@ -3,6 +3,7 @@ import { Board } from '@app/entities/board';
 import { BoardService } from '@app/services/board/board.service';
 import { CreateBoardComponent } from '@app/components/create-board/create-board.component';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-boards-page',
@@ -17,7 +18,12 @@ export class BoardsPageComponent implements OnInit {
 
   iconNew = faPlus;
 
-  constructor(private boardService: BoardService) { }
+  constructor(
+    private boardService: BoardService, 
+    private router: Router
+    ) {
+
+  }
 
   ngOnInit(): void {
     this.list();
@@ -37,5 +43,9 @@ export class BoardsPageComponent implements OnInit {
       }, reason => {
 
       });
+  }
+
+  goToBoard(board: Board): void {
+    this.router.navigateByUrl(`/boards/${board.id}`);
   }
 }
