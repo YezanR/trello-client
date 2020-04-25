@@ -5,6 +5,8 @@ import { BoardService } from '@app/services/board/board.service';
 import { TaskGroup } from '@app/entities/taskGroup';
 import { TaskService } from '@app/services/task/task.service';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Task } from '@app/entities/task';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-board-page',
@@ -18,6 +20,8 @@ export class BoardPageComponent implements OnInit {
   id: Number;
 
   iconNew = faPlus;
+
+  newTask: Task;
 
   constructor(
     private route: ActivatedRoute,
@@ -49,5 +53,25 @@ export class BoardPageComponent implements OnInit {
       }, error => {
         // TODO: handle error
       });
+  }
+
+  showNewTask(group: TaskGroup): void {
+    this.newTask = this.newTask || new Task();
+    this.newTask.groupId = group.id;
+  }
+
+  createTask(): void {
+    this.taskService.create(this.newTask)
+      .subscribe(task => {
+        let group: TaskGroup = this.taskGroups.find(group => group.id == this.newTask.groupId);
+        group.tasks.push(task);
+        this.newTask = null;
+      }, error => {
+        // TODO: handle error
+      })
+  }
+
+  groupHasNewTask(group: TaskGroup): boolean {
+    return this.newTask && this.newTask.groupId == group.id;
   }
 }

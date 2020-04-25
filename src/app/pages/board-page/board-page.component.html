@@ -16,8 +16,21 @@
                     {{ task.title }}
                 </div>
 
-                <button class="btn btn-block btn-light">
+                <textarea *ngIf="groupHasNewTask(group)" 
+                    placeholder="Enter a title for this task..."
+                    class="form-control mb-4" [(ngModel)]="newTask.title">
+                </textarea>
+
+                <button *ngIf="!groupHasNewTask(group)"
+                    class="btn btn-block btn-light" 
+                    (click)="showNewTask(group)">
                     <fa-icon [icon]="iconNew"></fa-icon> Add task
+                </button>
+
+                <button *ngIf="groupHasNewTask(group)" 
+                    class="btn btn-block btn-success" 
+                    (click)="createTask()">
+                    Save
                 </button>
             </div>
         </div>
