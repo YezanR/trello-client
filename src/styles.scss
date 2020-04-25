@@ -2,10 +2,11 @@
 
 @import "~bootstrap/scss/bootstrap";
 
+
 html, body
 {
     height: 100%;
-    background: #e2e1e0;
+    background-image: url('/assets/background.png');
 }
 
 .form-group.required label:after {

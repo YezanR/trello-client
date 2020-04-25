@@ -1,8 +1,10 @@
 
-<nav class="nav">
-    <a class="nav-link"><h5>{{ board?.title }}</h5></a>
-    <a class="nav-link">{{ board?.owner.username }}</a>
-</nav>
+<div class="row">
+    <nav class="nav">
+        <a class="nav-link"><h5>{{ board?.title }}</h5></a>
+        <a class="nav-link">{{ board?.owner.username }}</a>
+    </nav>
+</div>
 
 <div class="row">
     <div class="col-3 task-group" *ngFor="let group of taskGroups">
@@ -12,7 +14,7 @@
             </div>
 
             <div class="card-body">
-                <div class="task" *ngFor="let task of group.tasks">
+                <div class="task mb-2" *ngFor="let task of group.tasks">
                     {{ task.title }}
                 </div>
 
@@ -29,6 +31,7 @@
 
                 <button *ngIf="groupHasNewTask(group)" 
                     class="btn btn-block btn-success" 
+                    [disabled]="!isTaskValid()"
                     (click)="createTask()">
                     Save
                 </button>

@@ -6,7 +6,6 @@ import { TaskGroup } from '@app/entities/taskGroup';
 import { TaskService } from '@app/services/task/task.service';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Task } from '@app/entities/task';
-import { error } from 'protractor';
 
 @Component({
   selector: 'app-board-page',
@@ -61,6 +60,10 @@ export class BoardPageComponent implements OnInit {
   }
 
   createTask(): void {
+    if (!this.isTaskValid()) {
+      return;
+    }
+
     this.taskService.create(this.newTask)
       .subscribe(task => {
         let group: TaskGroup = this.taskGroups.find(group => group.id == this.newTask.groupId);
@@ -73,5 +76,9 @@ export class BoardPageComponent implements OnInit {
 
   groupHasNewTask(group: TaskGroup): boolean {
     return this.newTask && this.newTask.groupId == group.id;
+  }
+
+  isTaskValid(): boolean {    
+    return this.newTask && this.newTask.title.trim().length > 0;
   }
 }

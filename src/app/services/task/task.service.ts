@@ -19,6 +19,7 @@ export class TaskService extends Service {
   }
 
   public create(task: Task): Observable<Task> {
-      return this.http.post<Task>(this.BASE_API_URL + `taskGroups/${task.groupId}/tasks`, task);
+    task.title = task.title.trim();
+    return this.http.post<Task>(this.BASE_API_URL + `taskGroups/${task.groupId}/tasks`, task);
   }
 }

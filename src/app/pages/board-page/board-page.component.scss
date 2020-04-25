@@ -1,23 +1,31 @@
 
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
-@import '~bootstrap/scss/mixins';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/nav";
 
-.task-group {
-    .card-body {
-        background-color: $card-cap-bg;
-        padding: 0.5rem;
-        .task {
-            box-shadow: 0 1px 0 rgba(9,30,66,.25);
-            background-color: $white;
-            padding: 0.75rem;
-            margin-bottom: 10px;
+$card-spacer-x: 0.5rem;
+$card-bg: map-get($grays, "300");
+$enable-shadows: true;
 
-            &:hover {
-                cursor: pointer;
-                background-color: darken($color: $white, $amount: 1);
-            }
-        }
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/utilities";
+
+.task {
+    @include box-shadow(0 1px 0 rgba(9,30,66,.25));
+    background-color: $white;
+    padding: 0.75rem;
+
+    &:hover {
+        cursor: pointer;
+        background-color: darken($color: $white, $amount: 1);
     }
 }
 
+.nav {
+    color: $white;
+}
