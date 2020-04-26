@@ -20,7 +20,7 @@
 
                 <textarea *ngIf="groupHasNewTask(group)" 
                     placeholder="Enter a title for this task..."
-                    class="form-control mb-4" [(ngModel)]="newTask.title">
+                    class="form-control mb-4 new-task" [(ngModel)]="newTask.title">
                 </textarea>
 
                 <button *ngIf="!groupHasNewTask(group)"

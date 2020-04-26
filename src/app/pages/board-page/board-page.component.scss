@@ -26,6 +26,23 @@ $enable-shadows: true;
     }
 }
 
+textarea.new-task {
+    overflow: hidden;
+    overflow-wrap: break-word;
+    height: 60px;
+    resize: none;
+    border: none;
+    @include box-shadow(0 1px 0 rgba(9,30,66,.25));
+
+    &:focus {
+        border: inherit;
+        height: auto;
+        max-height: 162px;
+        min-height: 54px;
+        overflow-y: auto;
+    }
+}
+
 .nav {
     color: $white;
 }
