@@ -4,8 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '@app/services/board/board.service';
 import { TaskGroup } from '@app/entities/taskGroup';
 import { TaskService } from '@app/services/task/task.service';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faPen } from '@fortawesome/free-solid-svg-icons';
 import { Task } from '@app/entities/task';
+import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-board-page',
@@ -19,15 +20,17 @@ export class BoardPageComponent implements OnInit {
   id: Number;
 
   iconNew = faPlus;
+  iconEdit = faPen;
 
   newTask: Task;
 
   constructor(
     private route: ActivatedRoute,
     private boardService: BoardService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    config: NgbPopoverConfig
     ) {
-      
+    config.placement = 'right';
   }
 
   ngOnInit(): void {

@@ -14,8 +14,16 @@
             </div>
 
             <div class="card-body">
-                <div class="task mb-2" *ngFor="let task of group.tasks">
+                <div class="task mb-2" *ngFor="let task of group.tasks" >
                     {{ task.title }}
+
+                    <fa-icon class="btn-edit-task" [icon]="iconEdit" 
+                        [ngbPopover]="popContent" [autoClose]="'outside'"
+                        [popoverClass]="'edit-actions-list'">
+                    </fa-icon>
+                    <ng-template #popContent>
+                        <button type="button" class="btn btn-secondary btn-sm">Small button</button>
+                    </ng-template>
                 </div>
 
                 <textarea *ngIf="groupHasNewTask(group)" 

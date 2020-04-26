@@ -8,6 +8,7 @@
 @import "~bootstrap/scss/buttons";
 @import "~bootstrap/scss/nav";
 
+
 $card-spacer-x: 0.5rem;
 $card-bg: map-get($grays, "300");
 $enable-shadows: true;
@@ -19,10 +20,23 @@ $enable-shadows: true;
     @include box-shadow(0 1px 0 rgba(9,30,66,.25));
     background-color: $white;
     padding: 0.75rem;
+    position: relative;
 
     &:hover {
         cursor: pointer;
         background-color: darken($color: $white, $amount: 1);
+
+        .btn-edit-task {
+            visibility: visible;
+        }
+    }
+
+    .btn-edit-task {
+        position: absolute;
+        right: 6px;
+        top: 2px;
+        visibility: hidden;
+        color: map-get($grays, "600");
     }
 }
 
