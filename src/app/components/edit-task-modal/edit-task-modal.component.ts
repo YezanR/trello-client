@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Task } from '@app/entities/task';
+import { TaskService } from '@app/services/task/task.service';
 
 @Component({
   selector: 'app-edit-task-modal',
@@ -17,8 +18,12 @@ export class EditTaskModalComponent implements OnInit {
 
   modalRef: NgbModalRef;
 
-  constructor(private modalService: NgbModal)
-  { }
+  constructor(
+    private modalService: NgbModal,
+    private taskService: TaskService
+    ) { 
+
+  }
 
   ngOnInit(): void {
 
@@ -26,9 +31,19 @@ export class EditTaskModalComponent implements OnInit {
 
   open(task: Task): Promise<any> {
     this.task = task;
+    
     this.modalRef = this.modalService.open(this.content, {
       container: `#task-${task.id}`
     });
     return this.modalRef.result;
+  }
+
+  update(): void {
+    this.taskService.update(this.task)
+      .subscribe(result => {
+        this.modalRef.close(result);
+      }, error => {
+
+      });
   }
 }

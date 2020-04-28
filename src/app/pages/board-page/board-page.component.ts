@@ -96,7 +96,7 @@ export class BoardPageComponent implements OnInit {
   showEditTask(task: Task) {
     this.editTaskModal.open(task)
       .then(result => {
-
+        task = result
       }, error => {
         
       });

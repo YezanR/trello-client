@@ -2,11 +2,17 @@
     <div class="modal-close-area" aria-label="Close" (click)="modal.dismiss('Cross click')"></div>
 
     <div class="modal-body">
-        <textarea placeholder="Enter a title for this task..." 
-            class="form-control mb-2 new-task" [(ngModel)]="task.title"></textarea>
-    
-        <div class="mt-2">
-            <button type="submit" class="btn btn-success">Save</button>
-        </div>
+        <form #editTaskForm="ngForm" (submit)="update()">
+            <textarea required name="taskTitleInput"
+                placeholder="Enter a title for this task..." 
+                class="form-control mb-2 new-task" [(ngModel)]="task.title"></textarea>
+        
+            <div class="mt-2">
+                <button type="submit" 
+                    [disabled]="editTaskForm.form.invalid"
+                    (click)="update()" 
+                    class="btn btn-success">Save</button>
+            </div>
+        </form>
     </div>
 </ng-template>
