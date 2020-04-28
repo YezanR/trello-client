@@ -2,19 +2,25 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
+
+$card-spacer-x: 0.5rem;
+$card-bg: map-get($grays, "300");
+$enable-shadows: true;
+$popover-bg: transparent;
+$popover-border-width: 0;
+$popover-arrow-width: 0;
+$popover-arrow-height: 0;
+$modal-backdrop-opacity: 0.7;
+
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/grid";
 @import "~bootstrap/scss/buttons";
 @import "~bootstrap/scss/nav";
-
-
-$card-spacer-x: 0.5rem;
-$card-bg: map-get($grays, "300");
-$enable-shadows: true;
-
 @import "~bootstrap/scss/card";
 @import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/popover";
 
 .task {
     @include box-shadow(0 1px 0 rgba(9,30,66,.25));
@@ -37,6 +43,20 @@ $enable-shadows: true;
         top: 2px;
         visibility: hidden;
         color: map-get($grays, "600");
+    }
+
+    .modal {
+        position: absolute;
+
+        .modal-dialog {
+            margin: 0;
+        }
+
+        .modal-content {
+            background-color: transparent;   
+            box-shadow: none;
+            border: none;     
+        }
     }
 }
 

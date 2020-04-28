@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { Board } from '@app/entities/board';
 import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '@app/services/board/board.service';
 import { TaskGroup } from '@app/entities/taskGroup';
 import { TaskService } from '@app/services/task/task.service';
-import { faPlus, faPen } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Task } from '@app/entities/task';
-import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-board-page',
   templateUrl: './board-page.component.html',
-  styleUrls: ['./board-page.component.scss']
+  styleUrls: ['./board-page.component.scss'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class BoardPageComponent implements OnInit {
 
@@ -21,16 +22,19 @@ export class BoardPageComponent implements OnInit {
 
   iconNew = faPlus;
   iconEdit = faPen;
+  iconDelete = faTrash;
 
   newTask: Task;
+
+  @ViewChild('content') 
+  content: TemplateRef<any>;
 
   constructor(
     private route: ActivatedRoute,
     private boardService: BoardService,
     private taskService: TaskService,
-    config: NgbPopoverConfig
+    private modalService: NgbModal
     ) {
-    config.placement = 'right';
   }
 
   ngOnInit(): void {
@@ -83,5 +87,15 @@ export class BoardPageComponent implements OnInit {
 
   isTaskValid(): boolean {    
     return this.newTask && this.newTask.title.trim().length > 0;
+  }
+
+  delete(task: Task) {
+    
+  }
+
+  showEditTask(task: Task) {
+    this.modalService.open(this.content, {
+      container: `#task-${task.id}`
+    });
   }
 }
