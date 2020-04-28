@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Board } from '@app/entities/board';
 import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '@app/services/board/board.service';
@@ -7,12 +7,12 @@ import { TaskService } from '@app/services/task/task.service';
 import { faPlus, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Task } from '@app/entities/task';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditTaskModalComponent } from '@app/components/edit-task-modal/edit-task-modal.component';
 
 @Component({
   selector: 'app-board-page',
   templateUrl: './board-page.component.html',
-  styleUrls: ['./board-page.component.scss'],
-  encapsulation: ViewEncapsulation.None 
+  styleUrls: ['./board-page.component.scss']
 })
 export class BoardPageComponent implements OnInit {
 
@@ -26,8 +26,8 @@ export class BoardPageComponent implements OnInit {
 
   newTask: Task;
 
-  @ViewChild('content') 
-  content: TemplateRef<any>;
+  @ViewChild('editTaskModal') 
+  editTaskModal: EditTaskModalComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -94,8 +94,11 @@ export class BoardPageComponent implements OnInit {
   }
 
   showEditTask(task: Task) {
-    this.modalService.open(this.content, {
-      container: `#task-${task.id}`
-    });
+    this.editTaskModal.open(task)
+      .then(result => {
+
+      }, error => {
+        
+      });
   }
 }

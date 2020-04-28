@@ -16,6 +16,7 @@ import { NotifierComponent } from './modules/core/notifier/notifier.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CreateBoardComponent } from './components/create-board/create-board.component';
 import { BoardPageComponent } from './pages/board-page/board-page.component';
+import { EditTaskModalComponent } from './components/edit-task-modal/edit-task-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { BoardPageComponent } from './pages/board-page/board-page.component';
     MainLayoutComponent,
     NotifierComponent,
     CreateBoardComponent,
-    BoardPageComponent
+    BoardPageComponent,
+    EditTaskModalComponent
   ],
   imports: [
     BrowserModule,
