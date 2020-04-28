@@ -9,29 +9,41 @@ $enable-shadows: true;
 
 @import "~bootstrap/scss/card";
 
-.task {
-    @include box-shadow(0 1px 0 rgba(9,30,66,.25));
-    background-color: $white;
-    padding: 0.75rem;
-    position: relative;
+.board-body {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: auto;
+    height: 100%;
 
-    &:hover {
-        cursor: pointer;
-        background-color: darken($color: $white, $amount: 1);
-
+    .task-group {
+        width: 272px;
+    }
+    
+    .task {
+        @include box-shadow(0 1px 0 rgba(9,30,66,.25));
+        background-color: $white;
+        padding: 0.75rem;
+        position: relative;
+    
+        &:hover {
+            cursor: pointer;
+            background-color: darken($color: $white, $amount: 1);
+    
+            .btn-edit-task {
+                visibility: visible;
+            }
+        }
+    
         .btn-edit-task {
-            visibility: visible;
+            position: absolute;
+            right: 6px;
+            top: 2px;
+            visibility: hidden;
+            color: map-get($grays, "600");
         }
     }
-
-    .btn-edit-task {
-        position: absolute;
-        right: 6px;
-        top: 2px;
-        visibility: hidden;
-        color: map-get($grays, "600");
-    }
 }
+
 
 .nav {
     color: $white;

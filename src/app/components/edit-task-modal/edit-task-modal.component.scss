@@ -36,10 +36,21 @@ $modal-backdrop-opacity: 0.7;
         top: 0;
         left: 90%;
         list-style: none;
+        width: fit-content;
 
-        li .btn {
-            background-color: rgba(0, 0, 0, .6);
-            border: none;
+        li {
+            margin-bottom: 4px;
+
+            .btn {
+                background-color: rgba(0, 0, 0, .6);
+                border: none;
+                transition: transform 0.1s ease;
+    
+                &:hover {
+                    background-color: $black;
+                    transform: translate(3px, 0px);
+                }
+            }
         }
     }
 }

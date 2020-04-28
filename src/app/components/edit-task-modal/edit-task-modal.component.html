@@ -16,7 +16,17 @@
         </form>
 
         <ul class="edit-task-options">
-            <li><button class="btn btn-dark">Delete</button></li>
+            <li>
+                <button class="btn btn-dark">
+                    <fa-icon class="btn-edit-task mr-1" [icon]="iconDelete"></fa-icon> Delete
+                </button>
+            </li>
+
+            <li>
+                <button class="btn btn-dark">
+                    <fa-icon class="btn-edit-task mr-1" [icon]="iconDuplicate"></fa-icon> Duplicate
+                </button>
+            </li>
         </ul>
     </div>
 

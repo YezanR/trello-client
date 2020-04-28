@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, TemplateRef, ViewEncapsulation } from '@a
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Task } from '@app/entities/task';
 import { TaskService } from '@app/services/task/task.service';
+import { faTrash, faClone } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-edit-task-modal',
@@ -17,6 +18,9 @@ export class EditTaskModalComponent implements OnInit {
   task: Task = new Task();
 
   modalRef: NgbModalRef;
+
+  iconDelete = faTrash;
+  iconDuplicate = faClone;
 
   constructor(
     private modalService: NgbModal,
