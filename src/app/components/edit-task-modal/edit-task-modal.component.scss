@@ -8,6 +8,10 @@ $modal-backdrop-opacity: 0.7;
 @import "~assets/scss/task.scss";
 @import "~bootstrap/scss/modal";
 
+.modal-open .modal {
+    overflow: visible;
+}
+
 .modal {
     position: absolute;
     height: auto;
@@ -25,6 +29,18 @@ $modal-backdrop-opacity: 0.7;
         background-color: transparent;   
         box-shadow: none;
         border: none;     
+    }
+
+    .edit-task-options {
+        position: absolute;
+        top: 0;
+        left: 90%;
+        list-style: none;
+
+        li .btn {
+            background-color: rgba(0, 0, 0, .6);
+            border: none;
+        }
     }
 }
 
