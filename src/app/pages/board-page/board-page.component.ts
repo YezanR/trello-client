@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Board } from '@app/entities/board';
 import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '@app/services/board/board.service';
@@ -6,7 +6,6 @@ import { TaskGroup } from '@app/entities/taskGroup';
 import { TaskService } from '@app/services/task/task.service';
 import { faPlus, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Task } from '@app/entities/task';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditTaskModalComponent } from '@app/components/edit-task-modal/edit-task-modal.component';
 
 @Component({
@@ -14,7 +13,7 @@ import { EditTaskModalComponent } from '@app/components/edit-task-modal/edit-tas
   templateUrl: './board-page.component.html',
   styleUrls: ['./board-page.component.scss']
 })
-export class BoardPageComponent implements OnInit {
+export class BoardPageComponent implements OnInit, OnDestroy {
 
   board: Board;
   taskGroups: Array<TaskGroup> = [];
@@ -32,9 +31,9 @@ export class BoardPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private boardService: BoardService,
-    private taskService: TaskService,
-    private modalService: NgbModal
-    ) {
+    private taskService: TaskService
+  ) {
+    document.body.classList.add("no-scroll");
   }
 
   ngOnInit(): void {
@@ -100,5 +99,9 @@ export class BoardPageComponent implements OnInit {
       }, error => {
         
       });
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove("no-scroll");
   }
 }

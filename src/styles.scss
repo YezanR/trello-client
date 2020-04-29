@@ -10,6 +10,11 @@ html, body
     background-image: url('/assets/background.png');
 }
 
+body.no-scroll {
+    height: 100%;
+    overflow: hidden;
+}
+
 .form-group.required label:after {
     content:"*";
     color:red;
