@@ -71,13 +71,13 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     }
 
     this.taskService.create(this.newTask)
-      .subscribe(task => {
-        let group: TaskGroup = this.taskGroups.find(group => group.id == this.newTask.groupId);
-        group.tasks.push(task);
-        this.newTask = null;
-      }, error => {
-        // TODO: handle error
-      })
+    .subscribe(task => {
+      let group: TaskGroup = this.findGroupOfTask(this.newTask);
+      group.tasks.push(task);
+      this.newTask = null;
+    }, error => {
+      // TODO: handle error
+    })
   }
 
   groupHasNewTask(group: TaskGroup): boolean {
@@ -88,17 +88,23 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     return this.newTask && this.newTask.title.trim().length > 0;
   }
 
-  delete(task: Task) {
-    
-  }
-
   showEditTask(task: Task) {
     this.editTaskModal.open(task)
       .then(result => {
-        task = result
+        if (result.action == "edit") {
+          task = result
+        } 
+        else if (result.action == "delete") {
+          let group: TaskGroup = this.findGroupOfTask(task);
+          group.tasks = group.tasks.filter(taskInGrooup => taskInGrooup.id != task.id);
+        }
       }, error => {
         
       });
+  }
+
+  findGroupOfTask(task: Task): TaskGroup {
+    return this.taskGroups.find(group => group.id == task.groupId);
   }
 
   ngOnDestroy() {

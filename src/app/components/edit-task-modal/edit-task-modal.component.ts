@@ -45,7 +45,16 @@ export class EditTaskModalComponent implements OnInit {
   update(): void {
     this.taskService.update(this.task)
       .subscribe(result => {
-        this.modalRef.close(result);
+        this.modalRef.close({action: "edit", task: result});
+      }, error => {
+
+      });
+  }
+  
+  delete() {
+    this.taskService.delete(this.task.id)
+      .subscribe(() => {
+        this.modalRef.close({action: "delete", task: this.task});
       }, error => {
 
       });

@@ -27,4 +27,8 @@ export class TaskService extends Service {
     task.title = task.title.trim();
     return this.http.put<Task>(this.BASE_API_URL + `tasks/${task.id}`, task);
   }
+
+  public delete(id): Observable<void> {
+    return this.http.delete<void>(this.BASE_API_URL + `tasks/${id}`);
+  }
 }
