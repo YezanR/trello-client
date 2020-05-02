@@ -1,46 +1,49 @@
 
-<div class="row">
-    <nav class="nav">
-        <a class="nav-link"><h5>{{ board?.title }}</h5></a>
-        <a class="nav-link">{{ board?.owner.username }}</a>
-    </nav>
-</div>
-
-<div class="board-body">
-    <div class="task-group mr-2" *ngFor="let group of taskGroups">
-        <div class="card">
-            <div class="card-header">
-                {{ group.title }}
-            </div>
-
-            <div class="card-body">
-                <div class="task mb-2" [id]="'task-' + task.id" *ngFor="let task of group.tasks" >
-                    {{ task.title }}
-
-                    <fa-icon class="btn-edit-task" [icon]="iconEdit" (click)="showEditTask(task)">
-                    </fa-icon>
+<div class="board-page">
+    <div class="row">
+        <nav class="nav">
+            <a class="nav-link"><h5>{{ board?.title }}</h5></a>
+            <a class="nav-link">{{ board?.owner.username }}</a>
+        </nav>
+    </div>
+    
+    <div class="board-body">
+        <div class="task-group mr-2" *ngFor="let group of taskGroups">
+            <div class="card">
+                <div class="card-header">
+                    {{ group.title }}
                 </div>
-
-                <textarea *ngIf="groupHasNewTask(group)" 
-                    placeholder="Enter a title for this task..."
-                    class="form-control mb-4 new-task" [(ngModel)]="newTask.title">
-                </textarea>
-
-                <button *ngIf="!groupHasNewTask(group)"
-                    class="btn btn-block btn-light" 
-                    (click)="showNewTask(group)">
-                    <fa-icon [icon]="iconNew"></fa-icon> Add task
-                </button>
-
-                <button *ngIf="groupHasNewTask(group)" 
-                    class="btn btn-block btn-success" 
-                    [disabled]="!isTaskValid()"
-                    (click)="createTask()">
-                    Save
-                </button>
+    
+                <div cdkDropList  class="card-body" (cdkDropListDropped)="drop($event, group)">
+                    <div cdkDrag class="mb-2 task" [id]="'task-' + task.id" *ngFor="let task of group.tasks"
+                        (cdkDropListDropped)="drop($event)">
+                        {{ task.title }}
+    
+                        <fa-icon class="btn-edit-task" [icon]="iconEdit" (click)="showEditTask(task)">
+                        </fa-icon>
+                    </div>
+    
+                    <textarea *ngIf="groupHasNewTask(group)" 
+                        placeholder="Enter a title for this task..."
+                        class="form-control mb-4 new-task" [(ngModel)]="newTask.title">
+                    </textarea>
+    
+                    <button *ngIf="!groupHasNewTask(group)"
+                        class="btn btn-block btn-light" 
+                        (click)="showNewTask(group)">
+                        <fa-icon [icon]="iconNew"></fa-icon> Add task
+                    </button>
+    
+                    <button *ngIf="groupHasNewTask(group)" 
+                        class="btn btn-block btn-success" 
+                        [disabled]="!isTaskValid()"
+                        (click)="createTask()">
+                        Save
+                    </button>
+                </div>
             </div>
         </div>
     </div>
+    
+    <app-edit-task-modal #editTaskModal></app-edit-task-modal>
 </div>
-
-<app-edit-task-modal #editTaskModal></app-edit-task-modal>

@@ -1,51 +1,52 @@
-
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
-$card-spacer-x: 0.5rem;
-$card-bg: map-get($grays, "300");
-$enable-shadows: true;
-
-@import "~bootstrap/scss/card";
-
-.board-body {
-    display: flex;
-    overflow-y: hidden;
-    overflow-x: auto;
-    height: 100%;
-
-    .task-group {
-        width: 272px;
+.board-page {
+    
+    $card-spacer-x: 0.5rem;
+    $card-bg: map-get($grays, "300");
+    $enable-shadows: true;
+    
+    @import "~bootstrap/scss/card";
+    
+    .board-body {
+        display: flex;
+        overflow-y: hidden;
+        overflow-x: auto;
+    
+        .task-group {
+            width: 272px;
+        }
     }
     
-    .task {
-        @include box-shadow(0 1px 0 rgba(9,30,66,.25));
-        background-color: $white;
-        padding: 0.75rem;
-        position: relative;
+    .nav {
+        color: $white;
+    }
     
-        &:hover {
-            cursor: pointer;
-            background-color: darken($color: $white, $amount: 1);
-    
-            .btn-edit-task {
-                visibility: visible;
-            }
-        }
-    
+    @import "~assets/scss/task.scss";
+}
+
+.task {
+    @include box-shadow(0 1px 0 rgba(9,30,66,.25));
+    background-color: $white;
+    padding: 0.75rem;
+    position: relative;
+
+    &:hover {
+        cursor: pointer;
+        background-color: darken($color: $white, $amount: 1);
+
         .btn-edit-task {
-            position: absolute;
-            right: 6px;
-            top: 2px;
-            visibility: hidden;
-            color: map-get($grays, "600");
+            visibility: visible;
         }
     }
-}
 
-.nav {
-    color: $white;
+    .btn-edit-task {
+        position: absolute;
+        right: 6px;
+        top: 2px;
+        visibility: hidden;
+        color: map-get($grays, "600");
+    }
 }
-
-@import "~assets/scss/task.scss";

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { SignInRequest } from '../dto/sign-in-request';
 import { catchError } from 'rxjs/operators';
+import { Credentials } from '@app/modules/auth/dto/credentials';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  public signIn(request: SignInRequest): Observable<any> {
+  public signIn(request: Credentials): Observable<any> {
     return this.http
       .post(this.baseUrl + 'signIn', request)
       .pipe(

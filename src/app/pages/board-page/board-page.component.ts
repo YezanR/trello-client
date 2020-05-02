@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Board } from '@app/entities/board';
 import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '@app/services/board/board.service';
@@ -7,11 +7,13 @@ import { TaskService } from '@app/services/task/task.service';
 import { faPlus, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Task } from '@app/entities/task';
 import { EditTaskModalComponent } from '@app/components/edit-task-modal/edit-task-modal.component';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board-page',
   templateUrl: './board-page.component.html',
-  styleUrls: ['./board-page.component.scss']
+  styleUrls: ['./board-page.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class BoardPageComponent implements OnInit, OnDestroy {
 
@@ -105,6 +107,10 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   findGroupOfTask(task: Task): TaskGroup {
     return this.taskGroups.find(group => group.id == task.groupId);
+  }
+
+  drop(event: CdkDragDrop<Task[]>, group: TaskGroup) {
+    moveItemInArray(group.tasks, event.previousIndex, event.currentIndex);
   }
 
   ngOnDestroy() {

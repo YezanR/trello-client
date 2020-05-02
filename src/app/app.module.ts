@@ -10,10 +10,12 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 import { AuthModule } from './modules/auth/auth.module';
 import { BoardsPageComponent } from './pages/boards-page/boards-page.component';
 import { NotifierComponent } from './modules/core/notifier/notifier.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CreateBoardComponent } from './components/create-board/create-board.component';
 import { BoardPageComponent } from './pages/board-page/board-page.component';
 import { EditTaskModalComponent } from './components/edit-task-modal/edit-task-modal.component';
@@ -40,7 +42,8 @@ import { EditTaskModalComponent } from './components/edit-task-modal/edit-task-m
     FormsModule,
     AuthModule.forRoot(),
     FontAwesomeModule,
-    NgbModule
+    NgbModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
