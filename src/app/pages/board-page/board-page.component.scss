@@ -2,11 +2,14 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
+
 .board-page {
     
     $card-spacer-x: 0.5rem;
     $card-bg: map-get($grays, "300");
+    $card-cap-bg: $card-bg;
     $enable-shadows: true;
+    $card-border-width: 0;
     
     @import "~bootstrap/scss/card";
     
@@ -17,6 +20,19 @@
     
         .task-group {
             width: 272px;
+
+            .btn-new-task {
+                background-color: transparent;
+                border: none;
+
+                &:hover {
+                    background-color: darken($color: $card-bg, $amount: 10);
+                }
+            }
+        }
+
+        .card-footer {
+            padding: 0 $card-spacer-x 0.3rem $card-spacer-x;
         }
     }
     

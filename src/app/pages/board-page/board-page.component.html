@@ -7,14 +7,15 @@
         </nav>
     </div>
     
-    <div class="board-body">
+    <div class="board-body" cdkDropListGroup>
         <div class="task-group mr-2" *ngFor="let group of taskGroups">
             <div class="card">
                 <div class="card-header">
                     {{ group.title }}
                 </div>
     
-                <div cdkDropList  class="card-body" (cdkDropListDropped)="drop($event, group)">
+                <div class="card-body"
+                    cdkDropList (cdkDropListDropped)="drop($event, group)" [cdkDropListData]="group.tasks">
                     <div cdkDrag class="mb-2 task" [id]="'task-' + task.id" *ngFor="let task of group.tasks"
                         (cdkDropListDropped)="drop($event)">
                         {{ task.title }}
@@ -22,14 +23,17 @@
                         <fa-icon class="btn-edit-task" [icon]="iconEdit" (click)="showEditTask(task)">
                         </fa-icon>
                     </div>
-    
+
                     <textarea *ngIf="groupHasNewTask(group)" 
                         placeholder="Enter a title for this task..."
-                        class="form-control mb-4 new-task" [(ngModel)]="newTask.title">
+                        class="form-control new-task" [(ngModel)]="newTask.title">
                     </textarea>
+                </div>
+
     
+                <div class="card-footer">
                     <button *ngIf="!groupHasNewTask(group)"
-                        class="btn btn-block btn-light" 
+                        class="btn btn-new-task btn-block btn-light text-muted" 
                         (click)="showNewTask(group)">
                         <fa-icon [icon]="iconNew"></fa-icon> Add task
                     </button>
