@@ -31,4 +31,12 @@ export class TaskService extends Service {
   public delete(id): Observable<void> {
     return this.http.delete<void>(this.BASE_API_URL + `tasks/${id}`);
   }
+
+  public reorder(ids: Array<any>) {
+    return this.http.put(this.BASE_API_URL + `tasks/ranks`, ids);
+  }
+
+  public moveToGroup(taskId, groupId) {
+    return this.http.put(this.BASE_API_URL + `tasks/${taskId}/move/${groupId}`, {});
+  }
 }
