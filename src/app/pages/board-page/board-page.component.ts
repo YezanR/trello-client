@@ -109,24 +109,25 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     return this.taskGroups.find(group => group.id == task.groupId);
   }
 
-  drop(event: CdkDragDrop<Task[]>) {
+  async drop(event: CdkDragDrop<TaskGroup>) {
+    let previousGroup = event.previousContainer.data;
+    let group = event.container.data;
     if (event.previousContainer == event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      let ids: Number[] = event.container.data.map(task => task.id);
-      this.taskService.reorder(ids)
-        .subscribe(() => {
-          
-        });
+      moveItemInArray(group.tasks, event.previousIndex, event.currentIndex);
+      let ids: Number[] = group.tasks.map(task => task.id);
+      this.taskService.reorder(ids).toPromise();
     }
     else {
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
+      transferArrayItem(previousGroup.tasks,
+        group.tasks,
         event.previousIndex,
         event.currentIndex
       )
 
       let task: Task = event.item.data
-      this.taskService.moveToGroup(task.id, event.currentIndex);
+      await this.taskService.moveToGroup(task.id, group.id).toPromise()
+      let ids: Number[] = group.tasks.map(task => task.id);
+      this.taskService.reorder(ids).toPromise()
     }
   }
 

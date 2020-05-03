@@ -15,7 +15,7 @@
                 </div>
     
                 <div class="card-body"
-                    cdkDropList (cdkDropListDropped)="drop($event, group)" [cdkDropListData]="group.tasks">
+                    cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="group">
                     <div cdkDrag class="mb-2 task" [id]="'task-' + task.id" *ngFor="let task of group.tasks"
                         (cdkDropListDropped)="drop($event)" [cdkDragData]="task">
                         {{ task.title }}
