@@ -4,10 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '@app/services/board/board.service';
 import { TaskGroup } from '@app/entities/taskGroup';
 import { TaskService } from '@app/services/task/task.service';
-import { faPlus, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faPen, faTrash, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Task } from '@app/entities/task';
 import { EditTaskModalComponent } from '@app/components/edit-task-modal/edit-task-modal.component';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { TaskGroupService } from '@app/services/taskGroup/task-group.service';
 
 @Component({
   selector: 'app-board-page',
@@ -24,7 +25,9 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   iconNew = faPlus;
   iconEdit = faPen;
   iconDelete = faTrash;
+  iconCancel = faTimes;
 
+  newTaskGroup: TaskGroup;
   newTask: Task;
 
   @ViewChild('editTaskModal') 
@@ -33,7 +36,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private boardService: BoardService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private taskGroupService: TaskGroupService
   ) {
     document.body.classList.add("no-scroll");
   }
@@ -105,7 +109,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       });
   }
 
-  findGroupOfTask(task: Task): TaskGroup {
+  private findGroupOfTask(task: Task): TaskGroup {
     return this.taskGroups.find(group => group.id == task.groupId);
   }
 
@@ -129,6 +133,33 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       let ids: Number[] = group.tasks.map(task => task.id);
       this.taskService.reorder(ids).toPromise()
     }
+  }
+
+  showNewTaskGroup() {
+    this.newTaskGroup = new TaskGroup();
+    this.newTaskGroup.boardId = this.board.id;
+  }
+
+  cancelNewTaskGroup() {
+    this.newTaskGroup = null;
+  }
+
+  createTaskGroup(): void {
+    if (!this.isTaskGroupValid) {
+      return;
+    }
+
+    this.taskGroupService.create(this.newTaskGroup)
+      .subscribe(group => {
+        this.taskGroups.push(group);
+        this.newTaskGroup = null;
+      }, error => {
+        // TODO: handle error
+      })
+  }
+
+  isTaskGroupValid(): boolean {
+    return this.newTaskGroup && this.newTaskGroup.title.trim().length > 0;
   }
 
   ngOnDestroy() {

@@ -10,6 +10,7 @@
     $card-cap-bg: $card-bg;
     $enable-shadows: true;
     $card-border-width: 0;
+    height: 100%;
     
     @import "~bootstrap/scss/card";
     
@@ -17,9 +18,10 @@
         display: flex;
         overflow-y: hidden;
         overflow-x: auto;
+        height: 99%;
     
         .task-group {
-            width: 272px;
+            flex: 0 0 272px;
 
             .btn-new-task {
                 background-color: transparent;

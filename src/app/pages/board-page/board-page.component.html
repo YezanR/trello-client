@@ -47,6 +47,28 @@
                 </div>
             </div>
         </div>
+
+        <div class="task-group mr-2">
+            <div class="card" *ngIf="newTaskGroup">
+                <div class="card-header">
+                    <form>
+                        <input type="text" placeholder="Enter title here..."
+                            name="taskGroupTitleInput" autocomplete="off"
+                            class="form-control mb-2" [(ngModel)]="newTaskGroup.title">
+                            <button class="btn btn-success" [disabled]="!isTaskGroupValid()"
+                                (click)="createTaskGroup()">
+                                Save
+                            </button>
+                        <button class="btn" (click)="cancelNewTaskGroup()"><fa-icon [icon]="iconCancel"></fa-icon></button>
+                    </form>
+
+                </div>
+            </div>
+
+            <button *ngIf="!newTaskGroup" class="btn btn-block btn-primary" (click)="showNewTaskGroup()">
+                <fa-icon [icon]="iconNew"></fa-icon> Add another list
+            </button>
+        </div>
     </div>
     
     <app-edit-task-modal #editTaskModal></app-edit-task-modal>
