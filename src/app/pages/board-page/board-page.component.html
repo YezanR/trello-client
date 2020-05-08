@@ -12,6 +12,16 @@
             <div class="card">
                 <div class="card-header">
                     {{ group.title }}
+
+                        <div ngbDropdown class="options-dropdown">
+                            <button class="btn" ngbDropdownToggle>
+                                <fa-icon [icon]="iconOptions"></fa-icon>
+                            </button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                <button ngbDropdownItem (click)="deleteTaskGroup(group)">Delete</button>
+                                <button ngbDropdownItem>Delete all tasks in this card</button>
+                            </div>
+                        </div>
                 </div>
     
                 <div class="card-body"

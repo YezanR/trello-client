@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '@app/services/board/board.service';
 import { TaskGroup } from '@app/entities/taskGroup';
 import { TaskService } from '@app/services/task/task.service';
-import { faPlus, faPen, faTrash, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faPen, faTrash, faTimes, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { Task } from '@app/entities/task';
 import { EditTaskModalComponent } from '@app/components/edit-task-modal/edit-task-modal.component';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
@@ -26,6 +26,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   iconEdit = faPen;
   iconDelete = faTrash;
   iconCancel = faTimes;
+  iconOptions = faEllipsisH;
 
   newTaskGroup: TaskGroup;
   newTask: Task;
@@ -160,6 +161,11 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   isTaskGroupValid(): boolean {
     return this.newTaskGroup && this.newTaskGroup.title.trim().length > 0;
+  }
+
+  async deleteTaskGroup(group: TaskGroup) {
+    await this.taskGroupService.delete(group.id).toPromise();
+    this.taskGroups = this.taskGroups.filter(elt => elt.id != group.id);
   }
 
   ngOnDestroy() {
