@@ -28,11 +28,13 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   iconCancel = faTimes;
   iconOptions = faEllipsisH;
 
-  newTaskGroup: TaskGroup;
+  newGroup: TaskGroup;
   newTask: Task;
 
   @ViewChild('editTaskModal') 
   editTaskModal: EditTaskModalComponent;
+
+  groupInEditMode: TaskGroup = new TaskGroup();
 
   constructor(
     private route: ActivatedRoute,
@@ -136,36 +138,46 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  showNewTaskGroup() {
-    this.newTaskGroup = new TaskGroup();
-    this.newTaskGroup.boardId = this.board.id;
+  showNewGroup() {
+    this.newGroup = new TaskGroup();
+    this.newGroup.boardId = this.board.id;
   }
 
-  cancelNewTaskGroup() {
-    this.newTaskGroup = null;
+  cancelNewGroup() {
+    this.newGroup = null;
   }
 
-  createTaskGroup(): void {
-    if (!this.isTaskGroupValid) {
+  createGroup(): void {
+    if (!this.isGroupValid()) {
       return;
     }
 
-    this.taskGroupService.create(this.newTaskGroup)
+    this.taskGroupService.create(this.newGroup)
       .subscribe(group => {
         this.taskGroups.push(group);
-        this.newTaskGroup = null;
+        this.newGroup = null;
       }, error => {
         // TODO: handle error
       })
   }
 
-  isTaskGroupValid(): boolean {
-    return this.newTaskGroup && this.newTaskGroup.title.trim().length > 0;
+  isGroupValid(): boolean {
+    return this.newGroup && this.newGroup.title.trim().length > 0;
   }
 
-  async deleteTaskGroup(group: TaskGroup) {
+  async deleteGroup(group: TaskGroup) {
     await this.taskGroupService.delete(group.id).toPromise();
     this.taskGroups = this.taskGroups.filter(elt => elt.id != group.id);
+  }
+
+  toggleGroupEditMode(group: TaskGroup) {
+    this.groupInEditMode = group;
+  }
+
+  async updateGroup(group: TaskGroup) {
+    let updatedGroup: TaskGroup = await this.taskGroupService.update(group).toPromise();
+    group = updatedGroup;
+    this.groupInEditMode = new TaskGroup();
   }
 
   ngOnDestroy() {

@@ -11,17 +11,23 @@
         <div class="task-group mr-2" *ngFor="let group of taskGroups">
             <div class="card">
                 <div class="card-header">
-                    {{ group.title }}
+                    <div class="task-group-title" (click)="toggleGroupEditMode(group)">
+                        <input *ngIf="groupInEditMode.id == group.id; else groupTitle" type="text" 
+                            name="taskGroupTitleInput" class="form-control"
+                            [(ngModel)]="group.title"
+                            (focusout)="updateGroup(group)">
+                        <ng-template #groupTitle>{{ group.title }}</ng-template>
+                    </div>
 
-                        <div ngbDropdown class="options-dropdown">
-                            <button class="btn" ngbDropdownToggle>
-                                <fa-icon [icon]="iconOptions"></fa-icon>
-                            </button>
-                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                <button ngbDropdownItem (click)="deleteTaskGroup(group)">Delete</button>
-                                <button ngbDropdownItem>Delete all tasks in this card</button>
-                            </div>
+                    <div ngbDropdown class="options-dropdown">
+                        <button class="btn btn-options" ngbDropdownToggle>
+                            <fa-icon [icon]="iconOptions"></fa-icon>
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button ngbDropdownItem (click)="deleteGroup(group)">Delete</button>
+                            <button ngbDropdownItem>Delete all tasks in this card</button>
                         </div>
+                    </div>
                 </div>
     
                 <div class="card-body"
@@ -59,23 +65,23 @@
         </div>
 
         <div class="task-group mr-2">
-            <div class="card" *ngIf="newTaskGroup">
+            <div class="card" *ngIf="newGroup">
                 <div class="card-header">
                     <form>
                         <input type="text" placeholder="Enter title here..."
                             name="taskGroupTitleInput" autocomplete="off"
-                            class="form-control mb-2" [(ngModel)]="newTaskGroup.title">
-                            <button class="btn btn-success" [disabled]="!isTaskGroupValid()"
-                                (click)="createTaskGroup()">
+                            class="form-control mb-2" [(ngModel)]="newGroup.title">
+                            <button class="btn btn-success" [disabled]="!isGroupValid()"
+                                (click)="createGroup()">
                                 Save
                             </button>
-                        <button class="btn" (click)="cancelNewTaskGroup()"><fa-icon [icon]="iconCancel"></fa-icon></button>
+                        <button class="btn" (click)="cancelNewGroup()"><fa-icon [icon]="iconCancel"></fa-icon></button>
                     </form>
 
                 </div>
             </div>
 
-            <button *ngIf="!newTaskGroup" class="btn btn-block btn-primary" (click)="showNewTaskGroup()">
+            <button *ngIf="!newGroup" class="btn btn-block btn-primary" (click)="showNewGroup()">
                 <fa-icon [icon]="iconNew"></fa-icon> Add another list
             </button>
         </div>

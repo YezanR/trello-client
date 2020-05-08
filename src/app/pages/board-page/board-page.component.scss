@@ -6,6 +6,7 @@
 .board-page {
     
     $card-spacer-x: 0.5rem;
+    $card-spacer-y: 0rem;
     $card-bg: map-get($grays, "300");
     $card-cap-bg: $card-bg;
     $enable-shadows: true;
@@ -33,12 +34,16 @@
             }
 
             .card-header {
-                position: relative;
+                display: flex;
+                align-items: center;
+                padding-right: 0;
 
-                .options-dropdown {
-                    position: absolute;
-                    right: 0;
-                    top: 0;
+                .task-group-title {
+                    flex-grow: 1;
+
+                    .form-control {
+                        height: 30px;
+                    }
                 }
             }
         }

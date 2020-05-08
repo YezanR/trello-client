@@ -1,6 +1,6 @@
+import { Entity } from './entity';
 
-export class User {
-    id: Number;
+export class User extends Entity {
     firstName: String;
     lastName: String;
     email: String;
