@@ -19,6 +19,7 @@ import { NotifierComponent } from './modules/core/notifier/notifier.component';
 import { CreateBoardComponent } from './components/create-board/create-board.component';
 import { BoardPageComponent } from './pages/board-page/board-page.component';
 import { EditTaskModalComponent } from './components/edit-task-modal/edit-task-modal.component';
+import { UserInitialsPipe } from './pipes/user-initials/user-initials.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { EditTaskModalComponent } from './components/edit-task-modal/edit-task-m
     NotifierComponent,
     CreateBoardComponent,
     BoardPageComponent,
-    EditTaskModalComponent
+    EditTaskModalComponent,
+    UserInitialsPipe
   ],
   imports: [
     BrowserModule,

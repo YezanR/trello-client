@@ -3,7 +3,21 @@
     <div class="row">
         <nav class="nav">
             <a class="nav-link"><h5>{{ board?.title }}</h5></a>
-            <a class="nav-link">{{ board?.owner.username }}</a>
+            <a class="nav-link">
+                <fa-layers [fixedWidth]="true" [title]="board?.owner.username">
+                    <fa-icon stackItemSize="2x" [icon]="iconUser"></fa-icon>
+                    <fa-layers-text stackItemSize="1x" style="color: black" 
+                        content="{{ board?.owner | userInitials }}" transform="right-10"></fa-layers-text>
+                </fa-layers>
+            </a>
+            <a class="nav-link">
+                <fa-layers [fixedWidth]="true" *ngFor="let member of board?.members"
+                    [title]="member.username">
+                    <fa-icon stackItemSize="2x" [icon]="iconUser"></fa-icon>
+                    <fa-layers-text stackItemSize="1x" style="color: black" 
+                        content="{{ member | userInitials }}" transform="right-10"></fa-layers-text>
+                </fa-layers>
+            </a>
         </nav>
     </div>
     
