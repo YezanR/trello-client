@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '@app/entities/user';
 import { AuthService } from '@app/modules/auth/services/auth.service';
 import { Router } from '@angular/router';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { ShareRequestService } from '@app/services/share-request/share-request.service';
+import { ShareRequest } from '@app/entities/share-request';
 
 @Component({
   selector: 'app-navbar',
@@ -19,11 +22,18 @@ export class NavbarComponent implements OnInit {
   ]
 
   user: User;
+  shareRequests: ShareRequest[];
 
-  constructor(private authService: AuthService, private router: Router) { }
+  iconNotification = faBell;
+
+  constructor(
+    private authService: AuthService, 
+    private router: Router, 
+    private shareRequestService: ShareRequestService) { }
 
   ngOnInit(): void {
     this.loadUser();
+    this.listShareRequests();
   }
 
   async loadUser() {
@@ -33,5 +43,10 @@ export class NavbarComponent implements OnInit {
   signOut(): void {
     this.authService.destroySession();
     this.router.navigateByUrl('/auth/signIn');
+  }
+
+  async listShareRequests() {
+    this.shareRequestService.findAll().subscribe(
+      (requests: ShareRequest[]) => this.shareRequests = requests)
   }
 }

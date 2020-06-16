@@ -10,3 +10,10 @@ $navbar-padding-y: 0;
 .navbar {
     background-color: rgba(0,0,0,.15);
 }
+
+.notifications-container {
+    font-size: 0.8rem;
+    &.dropdown-menu {
+        width: 400px;
+    }
+}

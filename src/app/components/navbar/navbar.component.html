@@ -15,12 +15,41 @@
             </li>
         </ul>
 
-        <div ngbDropdown class="navbar-right text-white" display="dynamic">
-            <button class="btn profile-dropdown-toggle" id="userProfileDropdown" ngbDropdownToggle>
-                {{user?.username}}
-            </button>
-            <div ngbDropdownMenu aria-labelledby="userProfileDropdown">
-                <button ngbDropdownItem (click)="signOut()">Sign out</button>
+        <div class="navbar-right d-flex">    
+            <div ngbDropdown>
+                <fa-icon 
+                    id="notificationListToggle"
+                    class="btn text-white" 
+                    [icon]="iconNotification"
+                    ngbDropdownToggle
+                    placement="bottom" ></fa-icon>
+                <div ngbDropdownMenu class="notifications-container dropdown-menu-right list-group-flush" 
+                    aria-labelledby="notificationListToggle">
+                    <ul *ngIf="shareRequests && shareRequests.length > 0; else shareRequestsPlaceholder" class="list-group">
+                        <a *ngFor="let request of shareRequests" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">New share request</h5>
+                              <small>{{ request.createdAt }}</small>
+                            </div>
+                            <p class="mb-1">{{ request.board.owner | userInitials }} wants to share 
+                                <b>{{ request.board.title }}</b> with you
+                            </p>
+                            <small class="text-muted">Donec id elit non mi porta.</small>
+                        </a>
+                    </ul>
+                    <ng-template #shareRequestsPlaceholder class="list-group">
+                        <p>No share requests for now</p>
+                    </ng-template>
+                </div>
+            </div>
+
+            <div ngbDropdown  display="dynamic">
+                <button class="btn profile-dropdown-toggle" id="userProfileDropdown" ngbDropdownToggle>
+                    {{user?.username}}
+                </button>
+                <div ngbDropdownMenu aria-labelledby="userProfileDropdown">
+                    <button ngbDropdownItem (click)="signOut()">Sign out</button>
+                </div>
             </div>
         </div>
     </div>
